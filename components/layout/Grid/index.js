@@ -9,7 +9,7 @@ import styles from "./Grid.module.scss";
 
 const Grid = ({ items }) => {
 
-    const listVariants ={
+    const listVariants = {
         initial: {
             opacity: 0,
         },
@@ -17,10 +17,11 @@ const Grid = ({ items }) => {
             opacity: 1,
             transition: {
                 delay: 1,
-                staggerChildren: 0.5,
-            }
-        }
-    }
+                staggerChildren: 0.2,
+                delayChildren: 0.5,
+            },
+        },
+    };
     const listItemVariants = {
         initial: {
             opacity: 0,
@@ -29,8 +30,8 @@ const Grid = ({ items }) => {
         animate: {
             opacity: 1,
             y: 0,
-        }
-    }
+        },
+    };
 
     return (
         <motion.ul 
@@ -41,12 +42,12 @@ const Grid = ({ items }) => {
         >
             {items.map((item, index) => {
                 return (
-                    <li 
+                    <motion.li 
                         className={styles.grid__item}
                         key={`album-${index}`}
                         variants={listItemVariants}
-                        initial="initial"
-                        animate="animate"
+                        // initial="initial"
+                        // animate="animate"
                     >
                         <Link href={`https://open.spotify.com/album/${item.id}`}>
                             <Image 
@@ -60,7 +61,7 @@ const Grid = ({ items }) => {
                         <Paragraph>
                             {item.name}
                         </Paragraph>
-                    </li>
+                    </motion.li>
                 )
             })}
         </motion.ul>
